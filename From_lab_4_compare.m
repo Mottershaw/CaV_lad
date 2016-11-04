@@ -6,7 +6,7 @@ clc
 
 %% loading the data for 0.5Hz
 
-load 0_5Hz.txt;
+load 0_5Hz_lab5.txt;
 time = X4Hz(:,1);
 X4 = X4Hz(:,2);
 Y4 = X4Hz(:,3);
@@ -27,29 +27,30 @@ a = [90000,90000,90000,90000];
 for i=1:3
 	%This will load the data for each time of the for loop. 
 	if i==1
-	load 0_5Hz.txt;
-	time = X0_5Hz(:,1);
-	X = X0_5Hz(:,2);
-	Y = X0_5Hz(:,3);
+	load 0_5Hz_lab5.txt;
+	time = X0_5Hz_lab5(:,1);
+	X = X0_5Hz_lab5(:,2);
+	Y = X0_5Hz_lab5(:,3);
 	A = max(X);
-	clear x0_5Hz
+	clear x0_5Hz_lab5
 	end
 	
 	if i==2
-	load 15Hz.txt;
-	time = X15Hz(:,1);
-	X = X15Hz(:,2);
-	Y = X15Hz(:,3);
+	load 15Hz_lab5.txt;
+	time = X15Hz_lab5(:,1);
+	X = X15Hz_lab5(:,2);
+	Y = X15Hz_lab5(:,3);
 	A = max(X);
-	clear Hz
+	clear X15Hz_lab5
 	end
 	
 	if i==3
-	load 100Hz.txt;
-	time = X100Hz(:,1);
-	X = X100Hz(:,2);
-	Y = X100Hz(:,3);
+	load 100Hz_lab5.txt;
+	time = X100Hz_lab5(:,1);
+	X = X100Hz_lab5(:,2);
+	Y = X100Hz_lab5(:,3);
 	A = max(X4);
+	clear X100Hz_lab5
 	end
 	
 
