@@ -52,8 +52,6 @@ for i=1:3
 	A = max(X4);
 	clear X100Hz_lab5
 	end
-	
-
 
 	num1 = [0 0 k(n)*wn(i)^2];
 	den1 = [1 2*j(i)*wn(i) wn(i)^2];
@@ -64,7 +62,7 @@ for i=1:3
 	x = 0; y = 0;  T = 1/4;
 	t = linspace(0,2*T,2000);
 
-		%% this is for 4Hz
+		%% this is for each Frequech 
 		for n = 1:2:30
 			an = 8*A/(pi*n)^2;
 			x = x + an*cos(2*pi*n*(t - T/4)/T);
