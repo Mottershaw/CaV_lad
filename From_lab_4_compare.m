@@ -58,7 +58,7 @@ for i=1:3
 	num2 = [0 1 ];
 	den2 = [1/a(i) 1];
 	C = series(num1,den1,num2,den2);  % this is adding the two different systems together. 
-	[numF,denF]=feedback(c,1)
+	[numF,denF]=feedback(C,1)
 	x = 0; y = 0;  T = 1/4;
 	t = linspace(0,2*T,2000);
 
