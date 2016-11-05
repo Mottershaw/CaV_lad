@@ -57,8 +57,8 @@ for i=1:3
 	den1 = [1 2*j(i)*wn(i) wn(i)^2];
 	num2 = [0 1 ];
 	den2 = [1/a(i) 1];
-	[num,den] = series(num1,den1,num2,den2);  % this is adding the two different systems together. 
-
+	C = series(num1,den1,num2,den2);  % this is adding the two different systems together. 
+	[numF,denF]=feedback(c,1)
 	x = 0; y = 0;  T = 1/4;
 	t = linspace(0,2*T,2000);
 
@@ -66,7 +66,7 @@ for i=1:3
 		for n = 1:2:30
 			an = 8*A/(pi*n)^2;
 			x = x + an*cos(2*pi*n*(t - T/4)/T);
-			[m,p] = bode(num,den,2*pi*n/T);
+			[m,p] = bode(numF,denF,2*pi*n/T);
 			y = y + an*m*cos(2*pi*n*(t - T/4)/T4 + p*pi/180);
 		end 
 	figure(i)
