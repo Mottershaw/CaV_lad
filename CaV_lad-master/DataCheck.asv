@@ -1,0 +1,13 @@
+%% This is to check that the data is good for lab 5
+
+% Getting the data 
+ load 0_5Hz_lab5.txt
+ load 15Hz_lab5.txt
+ 
+ A=X0_5Hz_lab5(:,2);
+ B=X15Hz_lab5(:,2);
+ 
+ %%
+ 
+ for i=1:length(da
+ 
