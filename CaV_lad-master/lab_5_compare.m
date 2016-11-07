@@ -60,8 +60,8 @@ for i=1:3
 	den2 = [1/a(i) 1];
 	[num,den] = series(num1,den1,num2,den2);  % this is adding the two different systems together. 
 	
-    sys1=tf(num,den)
-    H=feedback(sys1,1)
+	    sys1=tf(num,den) %  sets up the transfer funciton for the feed back. 
+	    H=feedback(sys1,1) % This Creats the Feed back 
 	x = 0; y = 0; 
     T=T+Ph(i)
 
@@ -74,7 +74,7 @@ for i=1:3
 		end 
 	figure(i)
 	plot(t,X,t,Y,t,x,t,y)
-	title('At  Hx')
+	title('At 0.5 Hx')
 	xlabel('time response')
 	ylabel('Magnitude (V)')
 	legend('Experimental input','Experimental output','Simulation input','Simulation output') 
