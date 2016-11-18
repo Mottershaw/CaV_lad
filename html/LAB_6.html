@@ -1,0 +1,346 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>LAB_6</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-11-18"><meta name="DC.source" content="LAB_6.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Lab 5 Comparison.</a></li><li><a href="#2">From lab 3 data to set up the equation</a></li><li><a href="#3">Creating the transfer function.</a></li><li><a href="#4">The For loop for each section</a></li><li><a href="#6">System 1</a></li><li><a href="#7">System 2 Adding the P term ??</a></li><li><a href="#8">System 3 this is adding the integral term.</a></li><li><a href="#9">Initiation of for loop for each frequency</a></li><li><a href="#10">The graphing of the data.</a></li></ul></div><h2>Lab 5 Comparison.<a name="1"></a></h2><pre class="codeinput"><span class="comment">%reworking the code from lab 4 I have rewritten the following code.</span>
+clear
+clc
+</pre><h2>From lab 3 data to set up the equation<a name="2"></a></h2><pre class="codeinput">k = 1.6;
+j = 1.5;
+wn = 85;
+a = 90000;
+
+
+kp=(10.796*1000)/430; <span class="comment">% From using the multimeter.</span>
+</pre><h2>Creating the transfer function.<a name="3"></a></h2><pre class="codeinput"><span class="comment">%Revised transfer function because we have a feed back loop.</span>
+I=[0.5 15 100] ;         <span class="comment">%Frequencies defined</span>
+</pre><h2>The For loop for each section<a name="4"></a></h2><pre class="codeinput"><span class="keyword">for</span> i=1:3
+</pre><pre class="codeinput">	<span class="comment">%This will load the data for each time of the for loop.</span>
+
+         <span class="comment">%Period Defined</span>
+	<span class="keyword">if</span> i==1
+        load <span class="string">0_5Hz.txt</span>;            <span class="comment">%Loading lab measured data</span>
+        time = X0_5Hz(:,1);        <span class="comment">%Isolating time, Experimental input &amp; output</span>
+        X = X0_5Hz(:,2);           <span class="comment">%Isolating experimental data column from txt file</span>
+        Y = X0_5Hz(:,3);           <span class="comment">%Isolating simulated data column from txt file</span>
+        A = (max(X)-min(X))/2;
+        <span class="comment">%clear x0_5Hz</span>
+         T = 1/0.5;
+        t = linspace(0,2*T,1000);       <span class="comment">%Time broken up into increments</span>
+	<span class="keyword">end</span>
+	                          <span class="comment">%Period Defined</span>
+	<span class="keyword">if</span> i==2
+        load <span class="string">15Hz.txt</span>;             <span class="comment">%Loading lab measured data</span>
+        time = X15Hz(:,1);         <span class="comment">%Isolating time, Experimental input &amp; output</span>
+        X = X15Hz(:,2);            <span class="comment">%Isolating experimental data column from txt file</span>
+        Y = X15Hz(:,3);            <span class="comment">%Isolating simulated data column from txt file</span>
+        A = (max(X)-min(X))/2;
+        T = 1/15;
+        <span class="comment">%clear X15Hz_lab5</span>
+
+        t = linspace(0,2*T,2000);       <span class="comment">%Time broken up into increments</span>
+	<span class="keyword">end</span>
+	                           <span class="comment">%Period Defined</span>
+	<span class="keyword">if</span> i==3
+        load <span class="string">100Hz.txt</span>;            <span class="comment">%Loading lab measured data</span>
+        time = X100Hz(:,1);        <span class="comment">%Isolating time, Experimental input &amp; output</span>
+        X = X100Hz(:,2);           <span class="comment">%Isolating experimental data column from txt file</span>
+        Y = X100Hz(:,3);           <span class="comment">%Isolating simulated data column from txt file</span>
+         A = (max(X)-min(X))/2;
+        <span class="comment">%clear X100Hz_lab5</span>
+        T = 1/100;
+        t = linspace(0,2*T,2000);       <span class="comment">%Time broken up into increments</span>
+    <span class="keyword">end</span>
+</pre><h2>System 1<a name="6"></a></h2><pre class="codeinput">    <span class="comment">% System 1</span>
+	num1 = [0 0 k*kp*wn^2];    <span class="comment">% the numerator</span>
+	den1 = [1 2*j*wn wn^2];    <span class="comment">% The demnoomatier</span>
+
+    <span class="comment">% System 2</span>
+    num2 = [0 1 ];
+ 	den2 = [1/a 1];
+    [num,den] = series(num1,den1,num2,den2);  <span class="comment">% Adding the two systems together.</span>
+
+    sys1=tf(num,den);        <span class="comment">%creates a continuous-time transfer function</span>
+</pre><h2>System 2 Adding the P term ??<a name="7"></a></h2><pre class="codeinput">    sys2=feedback(sys1,1);      <span class="comment">%computes a closed-loop model M for the feedback loop</span>
+
+	x = 0; y = 0;
+</pre><h2>System 3 this is adding the integral term.<a name="8"></a></h2><h2>Initiation of for loop for each frequency<a name="9"></a></h2><pre class="codeinput">		<span class="keyword">for</span> n = 1:2:30
+			an = 8*A/(pi*n)^2;                           <span class="comment">%amplitude defined</span>
+			x = x + an*cos(2*pi*n*(t-T/4)/T);            <span class="comment">%Input Magnitude defined...</span>
+                                                      <span class="keyword">...</span><span class="comment">, and phase shift</span>
+			[m,p] = bode(sys2,2*pi*n/T);                    <span class="comment">%Creating Bode plot</span>
+
+			y = y + an*m*cos(2*pi*n*(t - T/4)/T + p*pi/180);<span class="comment">%Output Magnitude defined</span>
+        <span class="keyword">end</span>
+</pre><h2>The graphing of the data.<a name="10"></a></h2><pre class="codeinput">	figure(i)
+	plot(time,X,time,Y,time,x,time,y)                       <span class="comment">%Plotting Simulated input/output and expiremental input/output</span>
+
+
+    title([<span class="string">'Frequency '</span> num2str(I(i)) <span class="string">'Hz'</span>])    <span class="comment">%Adding Frequency dependent title</span>
+	xlabel(<span class="string">'time response'</span>)                     <span class="comment">%Labeling the x and y axis on plot</span>
+	ylabel(<span class="string">'Magnitude (V)'</span>)
+    <span class="comment">%Adding legend to plot</span>
+	legend(<span class="string">'Experimental input'</span>,<span class="string">'Experimental output'</span>,<span class="string">'Simulation input'</span>,<span class="string">'Simulation output'</span>)
+</pre><img vspace="5" hspace="5" src="LAB_6_01.png" alt=""> <img vspace="5" hspace="5" src="LAB_6_02.png" alt=""> <img vspace="5" hspace="5" src="LAB_6_03.png" alt=""> <pre class="codeinput"><span class="keyword">end</span>
+
+
+<span class="comment">% %Part C</span>
+<span class="comment">% clc</span>
+<span class="comment">%</span>
+<span class="comment">% % WE are comparing the feed back system to that of the non feed back</span>
+<span class="comment">% % system.</span>
+<span class="comment">% %% The non feed back system</span>
+<span class="comment">% num=[0 0 k*kp*wn^2];</span>
+<span class="comment">% dem=[1 2*j*wn wn^2];</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% %% The system with and with our a feed back loop.</span>
+<span class="comment">% w=1:0.01:10000;</span>
+<span class="comment">%</span>
+<span class="comment">% [m1,p1]=bode(num,dem,w);</span>
+<span class="comment">% m1=20*log10(m1)-30;</span>
+<span class="comment">%  % The system with feed back.</span>
+<span class="comment">% sys1=tf(num,dem);</span>
+<span class="comment">% sys=feedback(sys1,1); % just a simple feed back loop.</span>
+<span class="comment">%</span>
+<span class="comment">% [m2,p2]=bode(sys,w);</span>
+<span class="comment">% m2=20*log10(m2);</span>
+<span class="comment">%</span>
+<span class="comment">% %% The Graph the system with and with out feed.</span>
+<span class="comment">% figure(5)</span>
+<span class="comment">%</span>
+<span class="comment">% subplot(2,1,1)</span>
+<span class="comment">%     semilogx(w,m1,'-',w,m2(1,:),'.')</span>
+<span class="comment">%     title('Bode Comparison Open Vs Closed Loop (Magnitude)')</span>
+<span class="comment">%     xlabel('Frequency (rad/sec)')</span>
+<span class="comment">%     ylabel('Magnitude (dB)')</span>
+<span class="comment">%     legend('Open Loop','Closed Loop','Location','SouthWest')</span>
+<span class="comment">% subplot(2,1,2)</span>
+<span class="comment">%     semilogx(w,p1,'-.',w,p2(1,:),'.')</span>
+<span class="comment">%     title('Bode Comparison Open Vs Closed Loop (Phase)')</span>
+<span class="comment">%     xlabel('Frequency (rad/sec)')</span>
+<span class="comment">%     ylabel('Phase Shift (deg)')</span>
+<span class="comment">%     set(gca,'YTick',-360:90:180)</span>
+<span class="comment">%     axis([1 10000 -270 90])</span>
+<span class="comment">% grid on</span>
+<span class="comment">% legend('Open Loop','Closed Loop','Location','SouthWest')</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Lab 5 Comparison.
+%reworking the code from lab 4 I have rewritten the following code. 
+clear
+clc
+ 
+%% From lab 3 data to set up the equation 
+
+
+k = 1.6;
+j = 1.5;
+wn = 85;
+a = 90000;
+
+
+kp=(10.796*1000)/430; % From using the multimeter. 
+%% Creating the transfer function. 
+
+
+%Revised transfer function because we have a feed back loop. 
+I=[0.5 15 100] ;         %Frequencies defined
+
+
+%% The For loop for each section 
+for i=1:3                   
+	%This will load the data for each time of the for loop.
+    
+         %Period Defined
+	if i==1
+        load 0_5Hz.txt;            %Loading lab measured data
+        time = X0_5Hz(:,1);        %Isolating time, Experimental input & output
+        X = X0_5Hz(:,2);           %Isolating experimental data column from txt file
+        Y = X0_5Hz(:,3);           %Isolating simulated data column from txt file
+        A = (max(X)-min(X))/2;
+        %clear x0_5Hz
+         T = 1/0.5;  
+        t = linspace(0,2*T,1000);       %Time broken up into increments
+	end
+	                          %Period Defined
+	if i==2
+        load 15Hz.txt;             %Loading lab measured data
+        time = X15Hz(:,1);         %Isolating time, Experimental input & output
+        X = X15Hz(:,2);            %Isolating experimental data column from txt file
+        Y = X15Hz(:,3);            %Isolating simulated data column from txt file
+        A = (max(X)-min(X))/2;
+        T = 1/15;  
+        %clear X15Hz_lab5
+        
+        t = linspace(0,2*T,2000);       %Time broken up into increments
+	end
+	                           %Period Defined
+	if i==3
+        load 100Hz.txt;            %Loading lab measured data
+        time = X100Hz(:,1);        %Isolating time, Experimental input & output
+        X = X100Hz(:,2);           %Isolating experimental data column from txt file
+        Y = X100Hz(:,3);           %Isolating simulated data column from txt file
+         A = (max(X)-min(X))/2;
+        %clear X100Hz_lab5
+        T = 1/100;
+        t = linspace(0,2*T,2000);       %Time broken up into increments
+    end
+%% System 1 
+
+
+    % System 1 
+	num1 = [0 0 k*kp*wn^2];    % the numerator 
+	den1 = [1 2*j*wn wn^2];    % The demnoomatier 
+ 	
+    % System 2
+    num2 = [0 1 ];
+ 	den2 = [1/a 1];
+    [num,den] = series(num1,den1,num2,den2);  % Adding the two systems together. 
+    
+    sys1=tf(num,den);        %creates a continuous-time transfer function
+    
+%% System 2 Adding the P term ?? 
+  
+    sys2=feedback(sys1,1);      %computes a closed-loop model M for the feedback loop
+    
+	x = 0; y = 0; 
+
+
+%% System 3 this is adding the integral term.
+
+
+
+
+%% Initiation of for loop for each frequency
+		for n = 1:2:30
+			an = 8*A/(pi*n)^2;                           %amplitude defined
+			x = x + an*cos(2*pi*n*(t-T/4)/T);            %Input Magnitude defined...
+                                                      ..., and phase shift
+			[m,p] = bode(sys2,2*pi*n/T);                    %Creating Bode plot
+            
+			y = y + an*m*cos(2*pi*n*(t - T/4)/T + p*pi/180);%Output Magnitude defined
+        end 
+        
+%% The graphing of the data.         
+	figure(i)
+	plot(time,X,time,Y,time,x,time,y)                       %Plotting Simulated input/output and expiremental input/output
+
+
+    title(['Frequency ' num2str(I(i)) 'Hz'])    %Adding Frequency dependent title
+	xlabel('time response')                     %Labeling the x and y axis on plot
+	ylabel('Magnitude (V)')
+    %Adding legend to plot
+	legend('Experimental input','Experimental output','Simulation input','Simulation output') 
+
+
+end
+
+
+% %Part C
+% clc
+% 
+% % WE are comparing the feed back system to that of the non feed back
+% % system. 
+% %% The non feed back system 
+% num=[0 0 k*kp*wn^2];
+% dem=[1 2*j*wn wn^2];
+% 
+% 
+% %% The system with and with our a feed back loop. 
+% w=1:0.01:10000;
+% 
+% [m1,p1]=bode(num,dem,w);
+% m1=20*log10(m1)-30;
+%  % The system with feed back. 
+% sys1=tf(num,dem);
+% sys=feedback(sys1,1); % just a simple feed back loop. 
+% 
+% [m2,p2]=bode(sys,w);
+% m2=20*log10(m2);
+% 
+% %% The Graph the system with and with out feed. 
+% figure(5)
+% 
+% subplot(2,1,1)
+%     semilogx(w,m1,'-',w,m2(1,:),'.')
+%     title('Bode Comparison Open Vs Closed Loop (Magnitude)')
+%     xlabel('Frequency (rad/sec)') 
+%     ylabel('Magnitude (dB)') 
+%     legend('Open Loop','Closed Loop','Location','SouthWest')
+% subplot(2,1,2)
+%     semilogx(w,p1,'-.',w,p2(1,:),'.') 
+%     title('Bode Comparison Open Vs Closed Loop (Phase)')
+%     xlabel('Frequency (rad/sec)') 
+%     ylabel('Phase Shift (deg)')
+%     set(gca,'YTick',-360:90:180)
+%     axis([1 10000 -270 90])  
+% grid on 
+% legend('Open Loop','Closed Loop','Location','SouthWest')
+
+##### SOURCE END #####
+--></body></html>
